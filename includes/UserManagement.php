@@ -5,9 +5,7 @@ require_once('Database.php'); //Makes database connection.
         public function __construct() {}
 
         function registration($username, $mail, $password, $passwordreenterd) {
-            // require_once('classes/dbconnections/databaseConnection.php');
             $connection = new Database();
-            // print "REGISTRATION";
             $connection->openConnection();
 
             if ($connection->checkinfo("users", "username", $username) === "1")
@@ -15,7 +13,7 @@ require_once('Database.php'); //Makes database connection.
                 echo "<script type='text/javascript'>alert('error');</script>";
                 return;
             }
-            
+
             if ($connection->checkinfo("users", "mail", $mail) === "1")
             {
                 echo "<script type='text/javascript'>alert('error');</script>";
@@ -41,6 +39,20 @@ require_once('Database.php'); //Makes database connection.
                 header('Location: index.php');
             }
             $connection->closeConnection();
+        }
+
+        function login($mail, $password) {
+            session_start();
+            if (!isset($_SESSION["loggedin"])) {
+                $connection = new Database();
+                $connection->openConnection();
+                $hashedpassword = hash("sha256", $password."SaltedPassword");
+                if ($connection->checkinfo("users", "mail", $mail) === "1" && $connection->checkinfo("users", "password", $hashedpassword) === "1" )
+                {
+                    $_SESSION['loggedin'] = $mail;
+                }
+            }
+            var_dump($_SESSION['loggedin']);
         }
 
 /*
