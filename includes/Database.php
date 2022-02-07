@@ -6,7 +6,8 @@
     private $username = "root";
     private $password = "";
     private $connection = "";
-    //MAYBE ADD PERMISSIONS
+    //MAYBE ADD PERMISSIONS CHANGE ROOTUSERS WITH USERNAMES
+
     
     public function __construct() {}
 
@@ -19,6 +20,9 @@
         echo"<script type='text/javascript'>alert('Something went wrong! OpenConnection error')</script>";
       }
     }
+    public function returnConnection() {
+      return $this->connection;
+    }
 
     public function closeConnection() {
       try {
@@ -26,6 +30,16 @@
       } catch(PDOException $e) {
         echo"<script type='text/javascript'>alert('Something went wrong! CloseConnection error')</script>";
       }
-    }  
+    }
+
+    public function checkinfo($tabelname, $columname, $itemname) {
+      $sql = "SELECT * FROM $tabelname WHERE $columname = ?";
+      $stmt = $this->connection->prepare($sql);
+      $stmt->execute(array($itemname));
+      $result = $stmt->fetch(PDO::FETCH_ASSOC);
+      if ($result) {
+        return "1";
+      }
+    }
   }
 ?>

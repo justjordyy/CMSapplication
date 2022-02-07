@@ -34,11 +34,8 @@
         require_once('includes/Database.php');
         require_once('includes/UserManagement.php');
         if (isset($_POST['registrationForm'])) {
-            // require_once('classes/dbconnections/databaseConnection.php');
-            // $foo = new DataBaseConnection();
-            // $foo->openConnection();
-            registration();
-            // $foo->useradd(htmlentities($_POST['username']), htmlentities($_POST['mail']), htmlentities($_POST['password']), htmlentities($_POST['passwordRenterd']));
+            $usermanagement = new UserManagement();
+            $usermanagement->registration(htmlentities($_POST['username']), htmlentities($_POST['mail']), htmlentities($_POST['password']), htmlentities($_POST['passwordRenterd']));
         }
     ?>
 </html>
