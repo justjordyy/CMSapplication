@@ -32,7 +32,7 @@
       }
     }
 
-    public function checkinfo($tabelname, $columname, $itemname) {
+    public function checkInfo($tabelname, $columname, $itemname) {
       $sql = "SELECT * FROM $tabelname WHERE $columname = ?";
       $stmt = $this->connection->prepare($sql);
       $stmt->execute(array($itemname));
@@ -40,6 +40,13 @@
       if ($result) {
         return "1";
       }
+    }
+
+    public function returnItem($tabelname, $columname, $itemname) {
+      $sql = "SELECT * FROM $tabelname WHERE $columname = ?";
+      $stmt = $this->connection->prepare($sql);
+      $stmt->execute(array($itemname));
+      return $stmt->fetch(PDO::FETCH_ASSOC);
     }
   }
 ?>

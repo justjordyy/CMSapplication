@@ -31,7 +31,6 @@
         </div>
     </body>
     <?php
-        require_once('includes/Database.php');
         require_once('includes/UserManagement.php');
         if (isset($_POST['registrationForm'])) {
             $usermanagement = new UserManagement();
