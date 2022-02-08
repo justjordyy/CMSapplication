@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <?php 
-                require_once('includes/Sessions.php');
-                    $session = new Sessions();
-                    $session->ifSessionExist();
+    require_once('includes/Sessions.php');
+    $session = new Sessions();
+    $session->startSession();
 ?>
     <html lang="en">
         <head>

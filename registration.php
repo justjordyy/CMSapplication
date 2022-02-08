@@ -1,4 +1,13 @@
 <!DOCTYPE html>
+<?php 
+    require_once('includes/Sessions.php');
+    $session = new Sessions();
+    $session->startSession();
+    //addmessage that user is already logged in
+    if ($session->ifSessionExist() == "session") {
+        header("location: index.php");
+    }
+?>
 <html lang="en">
     <head>
         <meta charset="UTF-8">
