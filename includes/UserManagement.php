@@ -4,7 +4,7 @@ require_once('Database.php'); //Makes database connection.
 
         public function __construct() {}
 
-        function registration($username, $mail, $password, $passwordreenterd) {
+        public function registration($username, $mail, $password, $passwordreenterd) {
             $connection = new Database();
             $connection->openConnection();
 
@@ -41,19 +41,19 @@ require_once('Database.php'); //Makes database connection.
             $connection->closeConnection();
         }
 
-        function login($mail, $password) {
+        public function login($mail, $password) {
             if (!isset($_SESSION["loggedin"])) {
                 $connection = new Database();
                 $connection->openConnection();
                 $hashedpassword = hash("sha256", $password."SaltedPassword");
-                if ($connection->checkinfo("users", "mail", $mail) === "1" && $connection->checkinfo("users", "password", $hashedpassword) === "1" )
-                {
+                if ($connection->checkinfo("users", "mail", $mail) === "1" && $connection->checkinfo("users", "password", $hashedpassword) === "1" ) {
                     $_SESSION['loggedin'] = $connection->returnItem("users", "mail", $mail)["id"];
                 }
             }
-            var_dump($_SESSION['loggedin']);
+        }
     }
-/*
+
+        /*
 --> USERMANAGEMENT
 --->login
 --->logout
@@ -61,5 +61,4 @@ require_once('Database.php'); //Makes database connection.
 --->update
 --->delete
 */
-    }
 ?>

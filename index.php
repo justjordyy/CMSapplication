@@ -1,5 +1,9 @@
 <!DOCTYPE html>
-<?php session_start();?>
+<?php 
+                require_once('includes/Sessions.php');
+                    $session = new Sessions();
+                    $session->ifSessionExist();
+?>
     <html lang="en">
         <head>
             <meta charset="UTF-8">
