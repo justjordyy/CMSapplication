@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <?php 
     require_once('includes/Sessions.php');
+    require_once('includes/Database.php');
+    require_once('includes/UserManagement.php');
+    $usermanagement = new UserManagement();
+    $connection = new Database();
     $session = new Sessions();
     $session->startSession();
 ?>
@@ -15,17 +19,18 @@
             <title>CMS Aplication</title>
         </head>
     <body>
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-            <div class="container-fluid">
+        <?php if ($session->ifSessionExist() == "nosession") { 
+            echo "<nav class=\"navbar navbar-expand-lg navbar-dark bg-dark\">
+            <div class=\"container-fluid\">
                 <!--Before public commit, set this to CMS app and delete this comment  -->
-            <a class="navbar-brand" id="brandcolor" href="#">Portfolio</a>
-            <span class="navbar-text" data-bs-toggle="modal" data-bs-target="#loginModal">Login</span>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
+                <a class=\"navbar-brand\" id=\"brandcolor\" href=\"#\">Portfolio</a>
+                <span class=\"navbar-text\" data-bs-toggle=\"modal\" data-bs-target=\"#loginModal\">Login</span>
+                <button class=\"navbar-toggler\" type=\"button\" data-bs-toggle=\"collapse\" data-bs-target=\"#navbarText\" aria-controls=\"navbarText\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">
+                    <span class=\"navbar-toggler-icon\"></span>
                 </button>
             </div>
-        </nav>
-        <!-- Code base language is english, maybe if languaghe files can be made make them -->
+        </nav>";?>
+        
         <!-- Login modal -->
         <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
             <div class="modal-dialog">
@@ -47,19 +52,37 @@
                         </form>
                     </div>
                     <div class="modal-footer">
-                        <!-- Check deze vertaling -->
+                        <!-- Check Translation -->
                         <span>Not an account? <a href="./registreren.php">Register</a></span>
                     </div>
                 </div>
             </div>
-        </div>
-
+        </div>    
         <?php
-                require_once('includes/UserManagement.php');
-                if (isset($_POST['loginForm'])) {
-                    $usermanagement = new UserManagement();
-                    $usermanagement->login(htmlentities($_POST['mail']), htmlentities($_POST['password']));
+            //Login
+            if (isset($_POST['loginForm'])) {
+                $usermanagement->login(htmlentities($_POST['mail']), htmlentities($_POST['password']));
+                header("location: index.php");
                 }
+            } elseif ($session->ifSessionExist() == "session") {
+                $connection->openConnection();
+            echo "<nav class=\"navbar navbar-expand-lg navbar-dark bg-dark\">
+                    <div class=\"container-fluid\">
+                        <!--Before public commit, set this to CMS app and delete this comment  -->
+                        <a class=\"navbar-brand\" id=\"brandcolor\" href=\"#\">Portfolio</a>
+                        <span class=\"navbar-text\">".$connection->returnItem("users", "id", $_SESSION['loggedin'])["username"]."</span>
+                        <button class=\"navbar-toggler\" type=\"button\" data-bs-toggle=\"collapse\" data-bs-target=\"#navbarText\" aria-controls=\"navbarText\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">
+                            <span class=\"navbar-toggler-icon\"></span>
+                        </button>
+                    </div>
+                </nav>";}
         ?>
+
+
+
+    <div class="c">
+      One of three columns
+    </div>
+
     </body>
 </html>
