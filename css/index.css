@@ -2,3 +2,8 @@
 .loginmdlfrm {
     margin-bottom: 10px;
 }
+.c {
+    float: right;
+    margin-right: 10px;
+    display: none;
+}

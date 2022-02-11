@@ -70,7 +70,7 @@
                     <div class=\"container-fluid\">
                         <!--Before public commit, set this to CMS app and delete this comment  -->
                         <a class=\"navbar-brand\" id=\"brandcolor\" href=\"#\">Portfolio</a>
-                        <span class=\"navbar-text\">".$connection->returnItem("users", "id", $_SESSION['loggedin'])["username"]."</span>
+                        <span class=\"navbar-text\" onclick=\"showblock()\">".$connection->returnItem("users", "id", $_SESSION['loggedin'])["username"]."</span>
                         <button class=\"navbar-toggler\" type=\"button\" data-bs-toggle=\"collapse\" data-bs-target=\"#navbarText\" aria-controls=\"navbarText\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">
                             <span class=\"navbar-toggler-icon\"></span>
                         </button>
@@ -80,9 +80,25 @@
 
 
 
-    <div class="c">
-      One of three columns
+    <div class="float-md-right c" id="usercard">
+    <div class="card" style="width: 8rem;">
+  <div class="card-body">
+    <p class="card-text">Your profile</p>
+    <hr/>
+    <p class="card-text">Change site</p>
+            <hr/>
+    <a class="card-text" href="./logout.php">Logout</a>
+  </div>
+</div>
     </div>
-
     </body>
+    <script>
+        function showblock(){
+            if (document.getElementById("usercard").style.display == 'block') {
+                    document.getElementById("usercard").style.display='none';
+            } else {
+                document.getElementById("usercard").style.display='block';
+            }
+        }
+    </script>
 </html>
