@@ -29,11 +29,6 @@
                     <input type="text" class="reg" id="passwordreg" placeholder="admincode"  name="rol"><br><br>
                     <input type="checkbox" required id="regconfirm">
                     <label for="regconfirm">I agree with the Terms Of Service</label><br><br>
-                    <p id="gebrerr">gebruikersnaam is al in gebruik</p>
-                    <p id="mailerr">er is al een account met deze mail</p>
-                    <p id="wwerr">wachtwoorden komen niet overeen</p>
-                    <p id="rolerr">enter a 1 for admin or 0 for creator</p>
-                    <p id="dberr">Kon geen verbinding maken met de database</p>
                     <button type="submit" name="registrationForm" class="btn btn-info btn-block btn-round" >Register</button>
                 </form>
             </div>

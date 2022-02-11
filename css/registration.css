@@ -26,27 +26,3 @@
   .topdown{
     margin-top: 18%
   }
-  
-  #gebrerr{
-    display: none;
-  }
-  
-  #mailerr{
-    display: none;
-  }
-  
-  #wwerr{
-    display: none;
-  }
-  #dberr{
-    display: none;
-  }
-  
-  #rolerr{
-    display: none;
-  }
-  
-  #compl{
-    display: none;
-    font-size: 2rem;
-  }
