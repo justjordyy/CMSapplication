@@ -7,3 +7,13 @@
     margin-right: 10px;
     display: none;
 }
+
+.usercard {
+    text-decoration: none;
+    color: black;
+}
+
+.usercard:hover {
+    text-decoration: none;
+    color: black;
+}

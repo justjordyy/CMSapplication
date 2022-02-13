@@ -7,6 +7,9 @@
     $connection = new Database();
     $session = new Sessions();
     $session->startSession();
+    if ($session->ifSessionExist() == "nosession") {
+        header("location: index.php");
+    }
 ?>
     <html lang="en">
         <head>
@@ -19,65 +22,20 @@
             <title>CMS Aplication</title>
         </head>
     <body>
-        <?php if ($session->ifSessionExist() == "nosession") { 
-            echo "<nav class=\"navbar navbar-expand-lg navbar-dark bg-dark\">
-            <div class=\"container-fluid\">
-                <!--Before public commit, set this to CMS app and delete this comment  -->
-                <a class=\"navbar-brand\" id=\"brandcolor\" href=\"#\">Portfolio</a>
-                <span class=\"navbar-text\" data-bs-toggle=\"modal\" data-bs-target=\"#loginModal\">Login</span>
-                <button class=\"navbar-toggler\" type=\"button\" data-bs-toggle=\"collapse\" data-bs-target=\"#navbarText\" aria-controls=\"navbarText\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">
-                    <span class=\"navbar-toggler-icon\"></span>
-                </button>
-            </div>
-        </nav>";
-        ?>
-        
-        <!-- Login modal -->
-        <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="loginModalLabel">Log in</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <form method="post" id="loginForm">
-                            <div class="form-group">
-                                <h6>mail:</h6>
-                                <!-- maybe add the option for username too? -->
-                                <input type="email" class="form-control loginmdlfrm" id="email" placeholder="example@mail.com" name="mail" required>
-                                <h6>password:</h6>
-                                <input type="password" class="form-control loginmdlfrm" id="password" placeholder="password" name="password" required>
-                                <button type="submit" name="loginForm" class="btn btn-info btn-block btn-round" >Login!</button>
-                            </div>
-                        </form>
-                    </div>
-                    <div class="modal-footer">
-                        <!-- Check Translation -->
-                        <span>Not an account? <a href="./registration.php">Register</a></span>
-                    </div>
-                </div>
-            </div>
-        </div>  
+
 
         <?php
-            //Login
-            if (isset($_POST['loginForm'])) {
-                $usermanagement->login(htmlentities($_POST['mail']), htmlentities($_POST['password']));
-                header("location: index.php");
-                }
-            } elseif ($session->ifSessionExist() == "session") {
                 $connection->openConnection();
             echo "<nav class=\"navbar navbar-expand-lg navbar-dark bg-dark\">
                     <div class=\"container-fluid\">
                         <!--Before public commit, set this to CMS app and delete this comment  -->
-                        <a class=\"navbar-brand\" id=\"brandcolor\" href=\"#\">Portfolio</a>
+                        <a class=\"navbar-brand\" id=\"brandcolor\" href=\"./index.php\">Portfolio</a>
                         <span class=\"navbar-text\" onclick=\"showblock()\">".$connection->returnItem("users", "id", $_SESSION['loggedin'])["username"]."</span>
                         <button class=\"navbar-toggler\" type=\"button\" data-bs-toggle=\"collapse\" data-bs-target=\"#navbarText\" aria-controls=\"navbarText\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">
                             <span class=\"navbar-toggler-icon\"></span>
                         </button>
                     </div>
-                </nav>";}
+                </nav>";
         ?>
         
         <div class="float-md-right c" id="usercard">
@@ -86,7 +44,7 @@
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-lines-fill" viewBox="0 0 16 16">
                     <path d="M6 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-5 6s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zM11 3.5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1h-4a.5.5 0 0 1-.5-.5zm.5 2.5a.5.5 0 0 0 0 1h4a.5.5 0 0 0 0-1h-4zm2 3a.5.5 0 0 0 0 1h2a.5.5 0 0 0 0-1h-2zm0 3a.5.5 0 0 0 0 1h2a.5.5 0 0 0 0-1h-2z"/>
                 </svg>
-                    <a class="card-text usercard" href="./profile.php">Your profile</a>
+                    <a class="card-text usercard" href="#">Your profile</a>
                     <hr/>
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
                         <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>

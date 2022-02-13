@@ -1,0 +1,24 @@
+INDEX.PHP
+->CSS
+
+-->INDEX.CSS
+REGISTER.PHP
+
+->CLASSES
+--> db
+---> open
+---> close
+---> query
+
+--> USERMANAGEMENT
+--->login
+--->logout
+--->register
+--->update
+--->delete
+
+-->Pages
+---> Addpage
+---> change page
+---> delete
+---> add item to navbar
