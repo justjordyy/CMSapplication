@@ -1,3 +1,9 @@
+.c {
+    float: right;
+    margin-right: 10px;
+    display: none;
+}
+
 .usercard {
     text-decoration: none;
     color: black;
@@ -6,4 +12,12 @@
 .usercard:hover {
     text-decoration: none;
     color: black;
+}
+
+.infopos{
+    margin-top: 100px;
+    margin-left: 100px;
+    margin-left: auto;
+    margin-right: auto;
+    position: absolute;
 }
