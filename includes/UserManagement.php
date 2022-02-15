@@ -51,8 +51,9 @@ require_once('Database.php'); //Makes database connection.
                 }
             }
         }
+        public function update(){}
+    
     }
-
         /*
 --> USERMANAGEMENT
 --->login

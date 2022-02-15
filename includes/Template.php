@@ -53,7 +53,7 @@
                     </div>
                     <div class="modal-footer">
                         <!-- Check Translation -->
-                        <span>Not an account? <a href="./registration.php">Register</a></span>
+                        <span>New user? Create your account <a href="./registration.php">here</a></span>
                     </div>
                 </div>
             </div>

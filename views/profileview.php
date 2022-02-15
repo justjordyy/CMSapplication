@@ -21,7 +21,7 @@
                     </form>
                     <form id="updatepasswordForm" method="post">
                         <h6>password:</h6>
-                        <input type="oldpassword" class="reg" id="oldpassword" placeholder="oldpassword" required name="oldpassword">
+                        <input type="password" class="reg" id="oldpassword" placeholder="old password" required name="oldpassword">
                         </br>
                         <input type="password" class="reg" id="password" placeholder="password" required name="password">
                         <input type="password" class="reg" id="passwordrenterd" placeholder="reenter your password" required name="passwordRenterd">
