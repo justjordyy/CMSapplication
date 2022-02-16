@@ -1,5 +1,6 @@
 <?php
 require_once('Database.php'); //Makes database connection.
+require_once('includes/Sessions.php');
     class UserManagement {
 
         public function __construct() {}
@@ -48,11 +49,38 @@ require_once('Database.php'); //Makes database connection.
                 $hashedpassword = hash("sha256", $password."SaltedPassword");
                 if ($connection->checkinfo("users", "mail", $mail) === "1" && $connection->checkinfo("users", "password", $hashedpassword) === "1" ) {
                     $_SESSION['loggedin'] = $connection->returnItem("users", "mail", $mail)["id"];
+                    header("location: index.php");
                 }
             }
         }
-        public function update(){}
-    
+        public function update() {
+            $connection = new Database();
+            $connection->openConnection();
+        }
+
+        public function delete($mail, $password, $sessionId) {
+            $connection = new Database();
+            $connection->openConnection();
+            $hashedpassword = hash("sha256", $password."SaltedPassword");
+            if ($connection->checkinfo("users", "mail", $mail) === "1" && $connection->checkinfo("users", "password", $hashedpassword) === "1" )
+            {
+              
+              $conn = $connection->returnConnection();
+              $query = $conn->prepare("DELETE FROM users WHERE id=$sessionId"); 
+              if(!$query->execute() == TRUE)
+              {
+                  $message = "something went wrong";
+                  echo "<script type='text/javascript'>alert('$message');</script>";
+                  header("location: profile.php");
+              } else {
+                $session = new Sessions();
+                $session->destroySession();
+                $connection->closeConnection();
+                header("location: index.php");
+              
+                }
+            }
+        }
     }
         /*
 --> USERMANAGEMENT

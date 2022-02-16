@@ -63,7 +63,6 @@
             //Login
             if (isset($_POST['loginForm'])) {
                 $usermanagement->login(htmlentities($_POST['mail']), htmlentities($_POST['password']));
-                header("location: index.php");
                 }
             } elseif ($session->ifSessionExist() == "session") {
                 $connection->openConnection();

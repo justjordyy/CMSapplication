@@ -17,8 +17,18 @@
     text-decoration: none;
     color: black;
 }
-.infopos{
+.infopos {
     margin-top: 100px;
     display: flex;
     justify-content: center;
+}
+
+.userdelete {
+    /* margin-top: 100px; */
+    /* display: flex;
+    justify-content: center; */
+    text-align: center;
+    /* align-items: center; */
+    width: 10em;
+    height: 2.5em;
 }
