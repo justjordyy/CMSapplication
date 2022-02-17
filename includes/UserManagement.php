@@ -53,9 +53,22 @@ require_once('includes/Sessions.php');
                 }
             }
         }
-        public function update() {
+        public function update($columname, $itemname, $sessionId, $newitem) {
             $connection = new Database();
             $connection->openConnection();
+            if ($connection->checkinfo("users", $columname, $itemname) === "1") {
+                $conn = $connection->returnConnection();
+                $query = $conn->prepare("UPDATE users SET $columname = :$columname WHERE id=$sessionId");
+                $query->bindValue(":$columname", $newitem, PDO::PARAM_STR);
+                if(!$query->execute() == TRUE)
+                {
+                    $message = "something went wrong";
+                    echo "<script type='text/javascript'>alert('$message');</script>";
+                } else {
+                    header('Location: profile.php');
+                }
+                $connection->closeConnection();
+            }
         }
 
         public function delete($mail, $password, $sessionId) {

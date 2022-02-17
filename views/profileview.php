@@ -6,7 +6,7 @@
                     <form id="updateusernameForm" method="post">
                         <h6>Username:</h6>
                         <?php
-                            echo "<input type='text' class='reg' id='oldusername' placeholder='old username' value=".$username." required name='oldusername'>";
+                            echo "<input type='text' class='reg' id='oldusername' placeholder='old username' value=".$username." disabled='disabled'required name='oldusername'>";
                         ?>
                         <input type="text" class="reg" id="username" placeholder="new username" required name="username">
                         <button type="submit" name="updateusernameForm" class="btn btn-info btn-block btn-round" >Update!</button>
@@ -14,7 +14,7 @@
                     <form id="updatemailForm" method="post">
                         <h6>mail:</h6>
                         <?php
-                            echo "<input type='text' class='reg' id='oldmail' placeholder='old mail' value=".$usermail." required name='oldmail'>";
+                            echo "<input type='text' class='reg' id='oldmail' placeholder='old mail' value=".$usermail." disabled='disabled' required name='oldmail'>";
                         ?>
                         <input type="text" class="reg" id="mail" placeholder="new mail" required name="mail">
                         <button type="submit" name="updatemailForm" class="btn btn-info btn-block btn-round" >Update!</button>

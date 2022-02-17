@@ -5,7 +5,7 @@
     private $dbname = "cmsapplication";
     private $username = "root";
     private $password = "";
-    private $connection = "";
+    private $connection;
     //MAYBE ADD PERMISSIONS CHANGE ROOTUSERS WITH USERNAMES
 
     

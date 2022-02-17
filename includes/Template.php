@@ -1,13 +1,4 @@
 <!DOCTYPE html>
-<?php 
-    require_once('Sessions.php');
-    require_once('Database.php');
-    require_once('UserManagement.php');
-    $usermanagement = new UserManagement();
-    $connection = new Database();
-    $session = new Sessions();
-    $session->startSession();
-?>
     <html lang="en">
         <head>
             <meta charset="UTF-8">
@@ -19,7 +10,7 @@
             <title>CMS Aplication</title>
         </head>
     <body>
-        <?php if ($session->ifSessionExist() == "nosession") { 
+        <?php if ($sessionStatus == "nosession") { 
             echo "<nav class=\"navbar navbar-expand-lg navbar-dark bg-dark\">
             <div class=\"container-fluid\">
                 <a class=\"navbar-brand\" id=\"brandcolor\" href=\"./index.php\">CMS system</a>
@@ -61,16 +52,16 @@
 
         <?php
             //Login
-            if (isset($_POST['loginForm'])) {
-                $usermanagement->login(htmlentities($_POST['mail']), htmlentities($_POST['password']));
-                }
-            } elseif ($session->ifSessionExist() == "session") {
-                $connection->openConnection();
+            // if (isset($_POST['loginForm'])) {
+            //     $usermanagement->login(htmlentities($_POST['mail']), htmlentities($_POST['password']));
+            //     }
+            } elseif ($sessionStatus == "session") {
+                // $connection->openConnection();
             echo "<nav class=\"navbar navbar-expand-lg navbar-dark bg-dark\">
                     <div class=\"container-fluid\">
                         <!--Before public commit, set this to CMS app and delete this comment  -->
                         <a class=\"navbar-brand\" id=\"brandcolor\" href=\"./index.php\">Portfolio</a>
-                        <span class=\"navbar-text\" onclick=\"showblock()\">".$connection->returnItem("users", "id", $_SESSION['loggedin'])["username"]."</span>
+                        <span class=\"navbar-text\" onclick=\"showblock()\">".$username."</span>
                         <button class=\"navbar-toggler\" type=\"button\" data-bs-toggle=\"collapse\" data-bs-target=\"#navbarText\" aria-controls=\"navbarText\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">
                             <span class=\"navbar-toggler-icon\"></span>
                         </button>
