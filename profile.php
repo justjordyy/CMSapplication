@@ -18,6 +18,9 @@
         $usermanagement->update("mail", $username, $userid, htmlentities($_POST['mail']));
     }
 
-    
+    if (isset($_POST['updatepasswordForm'])) {
+        $usermanagement->updatePassword(htmlentities($_POST['oldpassword']), htmlentities($_POST['newpassword']), htmlentities($_POST['newpasswordrenterd']), $userid);
+    }
+
     $view = "profileview.php";
     require_once "./includes/Template.php";

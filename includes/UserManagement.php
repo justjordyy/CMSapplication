@@ -53,6 +53,31 @@ require_once('includes/Sessions.php');
                 }
             }
         }
+
+        public function updatePassword($oldpassword, $password, $passwordreenterd, $sessionId) {
+            $connection = new Database();
+            $connection->openConnection();
+            $oldhashedpassword = hash("sha256", $oldpassword."SaltedPassword");
+            if ($connection->checkinfo("users", "password", $oldhashedpassword) === "1" ) {
+                if ($password !== $passwordreenterd) {
+                    echo "<script type='text/javascript'>alert('error');</script>";
+                    return;
+                }
+                $hashedpassword = hash("sha256", $password."SaltedPassword");
+                $conn = $connection->returnConnection();
+                $query = $conn->prepare("UPDATE users SET password = :password WHERE id=$sessionId");
+                $query->bindValue(":password", $hashedpassword, PDO::PARAM_STR);
+                if(!$query->execute() == TRUE)
+                {
+                    $message = "something went wrong";
+                    echo "<script type='text/javascript'>alert('$message');</script>";
+                } else {
+                    header('Location: profile.php');
+                }
+                $connection->closeConnection();
+            }
+        }
+
         public function update($columname, $itemname, $sessionId, $newitem) {
             $connection = new Database();
             $connection->openConnection();
@@ -95,12 +120,4 @@ require_once('includes/Sessions.php');
             }
         }
     }
-        /*
---> USERMANAGEMENT
---->login
---->logout
---->register
---->update
---->delete
-*/
 ?>
