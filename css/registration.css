@@ -26,3 +26,32 @@
   .topdown{
     margin-top: 18%
   }
+
+  .alertsize{
+    text-align: center; 
+    margin-top: 20px;
+}
+
+.openconn{
+  display: none;
+}
+
+.closeconn{
+  display: none;
+}
+
+.pwdontmatch {
+  display: none;
+}
+
+.usernameexist {
+  display: none;
+}
+
+.mailexist {
+  display: none;
+}
+
+.error {
+  display: none;
+}

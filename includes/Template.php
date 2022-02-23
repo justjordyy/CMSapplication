@@ -51,12 +51,7 @@
         </div>  
 
         <?php
-            //Login
-            // if (isset($_POST['loginForm'])) {
-            //     $usermanagement->login(htmlentities($_POST['mail']), htmlentities($_POST['password']));
-            //     }
-            } elseif ($sessionStatus == "session") {
-                // $connection->openConnection();
+            } elseif ($sessionStatus == "session" && isset($username)) {
             echo "<nav class=\"navbar navbar-expand-lg navbar-dark bg-dark\">
                     <div class=\"container-fluid\">
                         <!--Before public commit, set this to CMS app and delete this comment  -->
@@ -66,7 +61,18 @@
                             <span class=\"navbar-toggler-icon\"></span>
                         </button>
                     </div>
-                </nav>";}
+                </nav>";
+            } else {
+                echo "<nav class=\"navbar navbar-expand-lg navbar-dark bg-dark\">
+                <div class=\"container-fluid\">
+                    <a class=\"navbar-brand\" id=\"brandcolor\" href=\"./index.php\">CMS system</a>
+                    <span class=\"navbar-text\" data-bs-toggle=\"modal\" data-bs-target=\"#loginModal\">Login</span>
+                    <button class=\"navbar-toggler\" type=\"button\" data-bs-toggle=\"collapse\" data-bs-target=\"#navbarText\" aria-controls=\"navbarText\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">
+                        <span class=\"navbar-toggler-icon\"></span>
+                    </button>
+                </div>
+            </nav>";
+            }
         ?>
         
         <div class="float-md-right c" id="usercard">
@@ -113,6 +119,33 @@
             require_once "./views/".$view;
             }
         ?>
+        <div class="delacc">
+        <div class="alert alert-warning loginfail alert-dismissible fade show popsize" id="loginfail" role="alert">
+                <strong>Oops!</strong> Invalid login credentials
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        <div class="alert alert-danger openconn alert-dismissible fade show popsize" id="openconn" role="alert">
+            <strong>FATAL ERROR!</strong> Please contact the server administrator! errorcode: openConnectionError
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        <div class="alert alert-danger closeconn alert-dismissible fade show popsize" id="closeconn" role="alert">
+            <strong>FATAL ERROR!</strong> Please contact the server administrator! errorcode: closeConnectionError
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        <!-- Make a message for succesfully created account -->
+        <?php if(isset($_GET['deleted'])) { ?>
+            <div class="alert alert-success alert-dismissible fade show popsize" role="alert">
+                Successfully deleted your account!
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div> 
+            <?php } ?>
+            <?php if(isset($_GET['acccreated'])) { ?>
+            <div class="alert alert-success alert-dismissible fade show popsize" role="alert">
+               Account created succesfully!
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div> 
+            <?php } ?>
+        </div>
     </body>
     <script>
         function showblock(){

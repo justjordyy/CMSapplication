@@ -11,18 +11,18 @@ require_once('includes/Sessions.php');
 
             if ($connection->checkinfo("users", "username", $username) === "1")
             {
-                echo "<script type='text/javascript'>alert('error');</script>";
+                echo "<script type='text/javascript'>document.getElementById('usernameexist').style.display='block';</script>>";
                 return;
             }
 
             if ($connection->checkinfo("users", "mail", $mail) === "1")
             {
-                echo "<script type='text/javascript'>alert('error');</script>";
+                echo "<script type='text/javascript'>document.getElementById('mailexist').style.display='block';</script>>";
                 return;
             }
 
             if ($password !== $passwordreenterd) {
-                echo "<script type='text/javascript'>alert('error');</script>";
+                echo "<script type='text/javascript'>document.getElementById('pwdontmatch').style.display='block';</script>>";
                 return;
             }
             $hashedpassword = hash("sha256", $password."SaltedPassword");
@@ -34,10 +34,9 @@ require_once('includes/Sessions.php');
             $query->bindValue(":password", $hashedpassword, PDO::PARAM_STR);
             if(!$query->execute() == TRUE)
             {
-                $message = "something went wrong";
-                echo "<script type='text/javascript'>alert('$message');</script>";
+                echo "<script type='text/javascript'>document.getElementById('error').style.display='block';</script>>";
             } else {
-                header('Location: index.php');
+                header('Location: index.php?acccreated');
             }
             $connection->closeConnection();
         }
@@ -47,10 +46,22 @@ require_once('includes/Sessions.php');
                 $connection = new Database();
                 $connection->openConnection();
                 $hashedpassword = hash("sha256", $password."SaltedPassword");
-                if ($connection->checkinfo("users", "mail", $mail) === "1" && $connection->checkinfo("users", "password", $hashedpassword) === "1" ) {
+                if ($connection->checkinfo("users", "mail", $mail) === "1" && $connection->checkinfo("users", "password", $hashedpassword) === "1") {
                     $_SESSION['loggedin'] = $connection->returnItem("users", "mail", $mail)["id"];
                     header("location: index.php");
+                } elseif($connection->checkinfo("users", "mail", $mail) === "0" || $connection->checkinfo("users", "password", $hashedpassword) === "0") {
+                    echo "<style>
+                    .loginfail{
+                        display: block !important;
+                    }
+                    </style>";
+                } else {
+                echo "<style>
+                .openconn{
+                    display: block !important;
                 }
+                </style>";
+            }
             }
         }
 
@@ -60,7 +71,7 @@ require_once('includes/Sessions.php');
             $oldhashedpassword = hash("sha256", $oldpassword."SaltedPassword");
             if ($connection->checkinfo("users", "password", $oldhashedpassword) === "1" ) {
                 if ($password !== $passwordreenterd) {
-                    echo "<script type='text/javascript'>alert('error');</script>";
+                    echo "<style> .pwdontmatch{ display: block !important; } </style>";
                     return;
                 }
                 $hashedpassword = hash("sha256", $password."SaltedPassword");
@@ -69,12 +80,16 @@ require_once('includes/Sessions.php');
                 $query->bindValue(":password", $hashedpassword, PDO::PARAM_STR);
                 if(!$query->execute() == TRUE)
                 {
+                    echo "<style> .smthwrong{ display: block !important; } </style>";
                     $message = "something went wrong";
                     echo "<script type='text/javascript'>alert('$message');</script>";
                 } else {
-                    header('Location: profile.php');
+                    header('Location: profile.php?updated=password');
                 }
                 $connection->closeConnection();
+            } else {
+                echo "<style> .unvalidpw{ display: block !important; } </style>";
+                return;
             }
         }
 
@@ -82,15 +97,18 @@ require_once('includes/Sessions.php');
             $connection = new Database();
             $connection->openConnection();
             if ($connection->checkinfo("users", $columname, $itemname) === "1") {
+                if ($connection->checkinfo("users", $columname, $newitem) === "1") {
+                    echo "<style> .unvalid".$columname."{ display: block !important; } </style>";
+                    return;
+                }
                 $conn = $connection->returnConnection();
                 $query = $conn->prepare("UPDATE users SET $columname = :$columname WHERE id=$sessionId");
                 $query->bindValue(":$columname", $newitem, PDO::PARAM_STR);
                 if(!$query->execute() == TRUE)
                 {
-                    $message = "something went wrong";
-                    echo "<script type='text/javascript'>alert('$message');</script>";
+                    echo "<style> .smthwrong{ display: block !important; } </style>";
                 } else {
-                    header('Location: profile.php');
+                    header("Location: profile.php?updated=$columname");
                 }
                 $connection->closeConnection();
             }
@@ -114,7 +132,7 @@ require_once('includes/Sessions.php');
                 $session = new Sessions();
                 $session->destroySession();
                 $connection->closeConnection();
-                header("location: index.php");
+                header("location: index.php?deleted");
               
                 }
             }

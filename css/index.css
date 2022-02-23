@@ -24,11 +24,53 @@
 }
 
 .userdelete {
-    /* margin-top: 100px; */
-    /* display: flex;
-    justify-content: center; */
     text-align: center;
-    /* align-items: center; */
     width: 10em;
     height: 2.5em;
+}
+
+.alertsize {
+    text-align: center; 
+    margin-top: 20px;
+}
+
+.openconn {
+    display: none;
+}
+  
+.closeconn {
+    display: none;
+}
+
+.loginfail {
+    display: none;
+}
+
+.pwdontmatch {
+    display: none;
+}
+
+.smthwrong {
+    display: none;
+}
+
+.unvalidpw {
+    display: none;
+}
+
+.unvalidusername {
+    display: none;
+}
+
+.unvalidmail {
+    display: none;
+}
+
+.delacc {
+    display: flex;
+    justify-content: center;
+}
+
+.popsize {
+    text-align: center;
 }

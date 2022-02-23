@@ -1,6 +1,34 @@
 <div class="infopos">
     <div class="row">
         <div class="col w-75">
+            <div class="alert alert-warning alertsize pwdontmatch alertsize alert-dismissible fade show" id="pwdontmatch" role="alert">
+                <strong>Oops!</strong> Your new passwords do not match.
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            <div class="alert alert-danger alertsize smthwrong alertsize alert-dismissible fade show" id="smthwrong" role="alert">
+                <strong>Oops!</strong> Something went wrong please try again.
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            <?php if(isset($_GET['updated'])) {
+                if ($_GET['updated'] === "mail"  || $_GET['updated'] === "username" || $_GET['updated'] === "password") { ?>
+                   <div class="alert alert-success alertsize alert-dismissible fade show" role="alert">
+                        Successfully updated your <?= htmlentities($_GET['updated']) ?>!
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div> 
+            <?php }
+            } ?>
+            <div class="alert alert-warning alertsize unvalidpw alertsize alert-dismissible fade show " id="unvalidpw" role="alert">
+                <strong>Oops!</strong> You have entered the wrong password.
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            <div class="alert alert-warning alertsize unvalidmail alertsize alert-dismissible fade show " id="unvalidmail" role="alert">
+                <strong>Oops!</strong> There is already a account with this mail.
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            <div class="alert alert-warning alertsize unvalidusername alertsize alert-dismissible fade show" id="unvalidusername" role="alert">
+                <strong>Oops!</strong> There is already a account with this username.
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
             <div class="card">
                 <div class="card-body">
                     <form id="updateusernameForm" method="post">

@@ -1,10 +1,13 @@
 <!DOCTYPE html>
 <?php 
     require_once('includes/Sessions.php');
+    require_once('includes/Database.php');
     $session = new Sessions();
+    $connection = new Database();
     $session->startSession();
     //addmessage that user is already logged in
-    if ($session->ifSessionExist() == "session") {
+    $connection->openConnection();
+    if ($session->ifSessionExist() == "session" || $connection->returnConnection() === "0") {
         header("location: index.php");
     }
 ?>
@@ -20,6 +23,22 @@
     </head>
     <body>
         <div class="container">
+            <div class="alert alert-warning alertsize pwdontmatch alert-dismissible fade show" id="pwdontmatch" role="alert">
+                <strong>Oops!</strong> Your passwords do not match.
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            <div class="alert alert-warning alertsize usernameexist alert-dismissible fade show" id="usernameexist" role="alert">
+                <strong>Oops!</strong> There is already a account with this username.
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            <div class="alert alert-warning alertsize mailexist alert-dismissible fade show" id="mailexist" role="alert">
+                <strong>Oops!</strong> There is already a account with this mail.
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            <div class="alert alert-danger alertsize error alert-dismissible fade show" id="error" role="alert">
+                <strong>Oops!</strong> Something went wrong please try again.
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
             <div class="registrationFormBackground">
                 <form id="registrationForm" method="post">
                     <input type="text" class="reg" id="username" placeholder="username" required name="username">
