@@ -28,8 +28,8 @@ class Pages {
     {
         $connection = new Database();
         $connection->openConnection();
-        
 
+        $conn = $connection->returnConnection();
     }
 }
 ?>
