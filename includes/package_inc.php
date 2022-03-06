@@ -2,8 +2,10 @@
     require_once('Sessions.php');
     require_once('Database.php');
     require_once('UserManagement.php');
+    require_once('Pages.php');
     $usermanagement = new UserManagement();
     $connection = new Database();
+    $pages = new Pages();
     $session = new Sessions();
     $connection->openConnection();
     $session->startSession();
