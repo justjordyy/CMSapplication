@@ -26,10 +26,31 @@ class Pages {
 
     public function returnPages()
     {
+        $str = "";
         $connection = new Database();
         $connection->openConnection();
 
         $conn = $connection->returnConnection();
-    }
+        
+        $query = $conn->prepare("SELECT * FROM pages");
+        $query->execute();
+       var_dump($query->fetch(PDO::FETCH_ASSOC));
+       foreach($query->fetch(PDO::FETCH_ASSOC) as $row) {
+           var_dump($row);
+           return $row;
+       }
+        // while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
+            // var_dump($query->fetch(PDO::FETCH_ASSOC)); 
+            // foreach($row as $navitems) {
+            //  return $navitems;
+            // }
+            // var_dump($row[1]);
+                    // return $row;
+        }
+        // exit;   
+        
+        
+    //    return $str;
+    // }
 }
 ?>
