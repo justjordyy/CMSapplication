@@ -35,8 +35,28 @@ class Pages {
         $query->execute();
 
         while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
-            echo "<li class=\"nav-item\"><a class=\"nav-text navsett\" href=\"#".htmlentities($row['pagename'])."\">".htmlentities($row['pagename'])."</a></li>";
+            echo "<li class=\"nav-item\"><a class=\"nav-text navsett\" href=\"./page.php?page=".htmlentities($row['pagename'])."\">".htmlentities($row['pagename'])."</a></li>";
         }
-    } 
+    }
+
+    public function returnPageContext($page) {
+        $connection = new Database();
+        $connection->openConnection();
+
+        if ($connection->checkinfo("pages", "pagename", $page) === "1") {
+            return $connection->returnItem("pages", "pagename", $page)["context"];
+        } else {
+            echo "<h1>No page has been found</h1>";
+        }
+
+
+
+
+        // $conn = $connection->returnConnection();
+        
+        // $query = $conn->prepare("SELECT * FROM pages");
+        // $query->execute();
+        //  $userid = $connection->returnItem("pages", "pagename", $page)["id"];
+    }
 }   
 ?>
