@@ -13,9 +13,9 @@
         <?php if ($sessionStatus == "nosession") { 
             echo "<nav class=\"navbar navbar-expand-lg navbar-dark bg-dark\">
             <div class=\"container-fluid\">
-                <a class=\"navbar-brand\" id=\"brandcolor\" href=\"./index.php\">CMS system</a>".
-                $pages->returnPages()
-                ."<li class=\"nav-item\"><a class=\"nav-link\" href=\"#\">".$pages->returnPages()."</a></li>
+                <a class=\"navbar-brand\" id=\"brandcolor\" href=\"./index.php\">CMS system</a>";
+                $pages->returnPages();
+                echo "<li class=\"nav-item\"><a class=\"nav-link\" href=\"#\">".$pages->returnPages()."</a></li>
                 <span class=\"navbar-text\" data-bs-toggle=\"modal\" data-bs-target=\"#loginModal\">Login</span>
                 <button class=\"navbar-toggler\" type=\"button\" data-bs-toggle=\"collapse\" data-bs-target=\"#navbarText\" aria-controls=\"navbarText\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">
                     <span class=\"navbar-toggler-icon\"></span>
@@ -57,12 +57,7 @@
             echo "<nav class=\"navbar navbar-expand-lg navbar-dark bg-dark\">
                     <div class=\"container-fluid\">
                         <a class=\"navbar-brand\" id=\"brandcolor\" href=\"./index.php\">CMS app</a>";
-                        foreach($pages->returnPages() as $rowitem) {
-                           echo " <li class=\"nav-item\" style=\"color: white;\">
-                            <a class=\"nav-link\" href=\"#\">".$rowitem."</a>
-                            </li>";
-                        var_dump($rowitem);
-                        } 
+                        $pages->returnPages();
                         echo"<span class=\"navbar-text\" onclick=\"showblock()\">".$username."</span>
                         <button class=\"navbar-toggler\" type=\"button\" data-bs-toggle=\"collapse\" data-bs-target=\"#navbarText\" aria-controls=\"navbarText\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">
                             <span class=\"navbar-toggler-icon\"></span>
@@ -72,10 +67,9 @@
             } else {
                 echo "<nav class=\"navbar navbar-expand-lg navbar-dark bg-dark\">
                 <div class=\"container-fluid\">
-                    <a class=\"navbar-brand\" id=\"brandcolor\" href=\"./index.php\">CMS system</a>".
-                    $pages->returnPages()
-                    ."<li class=\"nav-item\"><a class=\"nav-link\" href=\"#\">".$pages->returnPages()."</a></li>
-                    <span class=\"navbar-text\" data-bs-toggle=\"modal\" data-bs-target=\"#loginModal\">Login</span>
+                    <a class=\"navbar-brand\" id=\"brandcolor\" href=\"./index.php\">CMS system</a>";
+                    $pages->returnPages();
+                    echo "<span class=\"navbar-text\" data-bs-toggle=\"modal\" data-bs-target=\"#loginModal\">Login</span>
                     <button class=\"navbar-toggler\" type=\"button\" data-bs-toggle=\"collapse\" data-bs-target=\"#navbarText\" aria-controls=\"navbarText\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">
                         <span class=\"navbar-toggler-icon\"></span>
                     </button>

@@ -74,3 +74,13 @@
 .popsize {
     text-align: center;
 }
+
+.navsett {
+    color: white;
+    text-decoration: none;
+}
+
+.navsett:hover {
+    color: #fffaef;
+    text-decoration: none;
+}

@@ -26,7 +26,6 @@ class Pages {
 
     public function returnPages()
     {
-        $str = "";
         $connection = new Database();
         $connection->openConnection();
 
@@ -34,23 +33,10 @@ class Pages {
         
         $query = $conn->prepare("SELECT * FROM pages");
         $query->execute();
-       var_dump($query->fetch(PDO::FETCH_ASSOC));
-       foreach($query->fetch(PDO::FETCH_ASSOC) as $row) {
-           var_dump($row);
-           return $row;
-       }
-        // while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
-            // var_dump($query->fetch(PDO::FETCH_ASSOC)); 
-            // foreach($row as $navitems) {
-            //  return $navitems;
-            // }
-            // var_dump($row[1]);
-                    // return $row;
+
+        while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
+            echo "<li class=\"nav-item\"><a class=\"nav-text navsett\" href=\"#".htmlentities($row['pagename'])."\">".htmlentities($row['pagename'])."</a></li>";
         }
-        // exit;   
-        
-        
-    //    return $str;
-    // }
-}
+    } 
+}   
 ?>
