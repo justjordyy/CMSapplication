@@ -76,7 +76,7 @@
                         <h6>password:</h6>
                         <input type="password" class="form-control loginmdlfrm" id="password" placeholder="password" name="password" required>
                         <button type="submit" name="deleteForm" class="btn btn-light">Delete!</button>
-                        <button type="submit" name="deleteForm" class="btn btn-danger">Cancel</button>
+                        <button type="button" name="btn-close" class="btn btn-danger" data-bs-dismiss="modal" aria-label="Close">Cancel</button>
                     </div>
                 </form>
             </div>
