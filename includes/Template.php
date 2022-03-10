@@ -13,12 +13,13 @@
         <?php if ($sessionStatus == "nosession") { 
             echo "<nav class=\"navbar navbar-expand-lg navbar-dark bg-dark\">
             <div class=\"container-fluid\">
-                <a class=\"navbar-brand\" id=\"brandcolor\" href=\"./index.php\">CMS system</a>";
+                <a class=\"navbar-brand\" id=\"brandcolor\" href=\"./index.php\">CMS system</a>
+                <div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">";
                 $pages->returnPages();
-                echo "<span class=\"navbar-text\" data-bs-toggle=\"modal\" data-bs-target=\"#loginModal\">Login</span>
-                <button class=\"navbar-toggler\" type=\"button\" data-bs-toggle=\"collapse\" data-bs-target=\"#navbarText\" aria-controls=\"navbarText\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">
-                    <span class=\"navbar-toggler-icon\"></span>
-                </button>
+                echo "</div><span class=\"navbar-text\" data-bs-toggle=\"modal\" data-bs-target=\"#loginModal\">Login</span>
+                <button class=\"navbar-toggler\" type=\"button\" data-bs-toggle=\"collapse\" data-bs-target=\"#navbarSupportedContent\" aria-controls=\"navbarSupportedContent\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">
+                <span class=\"navbar-toggler-icon\"></span>
+              </button>
             </div>
         </nav>";
         ?>
@@ -55,23 +56,25 @@
             } elseif ($sessionStatus == "session" && isset($username)) {
             echo "<nav class=\"navbar navbar-expand-lg navbar-dark bg-dark\">
                     <div class=\"container-fluid\">
-                        <a class=\"navbar-brand\" id=\"brandcolor\" href=\"./index.php\">CMS app</a>";
+                        <a class=\"navbar-brand\" id=\"brandcolor\" href=\"./index.php\">CMS app</a>
+                        <div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">";
                         $pages->returnPages();
-                        echo"<span class=\"navbar-text\" onclick=\"showblock()\">".$username."</span>
-                        <button class=\"navbar-toggler\" type=\"button\" data-bs-toggle=\"collapse\" data-bs-target=\"#navbarText\" aria-controls=\"navbarText\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">
-                            <span class=\"navbar-toggler-icon\"></span>
-                        </button>
+                        echo"</div><span class=\"navbar-text\" onclick=\"showblock()\">".$username."</span>
+                        <button class=\"navbar-toggler\" type=\"button\" data-bs-toggle=\"collapse\" data-bs-target=\"#navbarSupportedContent\" aria-controls=\"navbarSupportedContent\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">
+                        <span class=\"navbar-toggler-icon\"></span>
+                      </button>
                     </div>
                 </nav>";
             } else {
                 echo "<nav class=\"navbar navbar-expand-lg navbar-dark bg-dark\">
                 <div class=\"container-fluid\">
-                    <a class=\"navbar-brand\" id=\"brandcolor\" href=\"./index.php\">CMS system</a>";
+                    <a class=\"navbar-brand\" id=\"brandcolor\" href=\"./index.php\">CMS system</a>
+                    <div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">";
                     $pages->returnPages();
-                    echo "<span class=\"navbar-text\" data-bs-toggle=\"modal\" data-bs-target=\"#loginModal\">Login</span>
-                    <button class=\"navbar-toggler\" type=\"button\" data-bs-toggle=\"collapse\" data-bs-target=\"#navbarText\" aria-controls=\"navbarText\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">
-                        <span class=\"navbar-toggler-icon\"></span>
-                    </button>
+                    echo "</div><span class=\"navbar-text\" data-bs-toggle=\"modal\" data-bs-target=\"#loginModal\">Login</span>
+                    <button class=\"navbar-toggler\" type=\"button\" data-bs-toggle=\"collapse\" data-bs-target=\"#navbarSupportedContent\" aria-controls=\"navbarSupportedContent\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">
+                    <span class=\"navbar-toggler-icon\"></span>
+                  </button>
                 </div>
             </nav>";
             }
