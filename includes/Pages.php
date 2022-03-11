@@ -82,5 +82,23 @@ class Pages {
             </svg></td></tr>";
         }
     }
+
+    public function editPage($id, $pageTitle, $pageContent){
+        $connection = new Database();
+        $connection->openConnection();
+        if ($connection->checkinfo("pages", "id", $id) === "1") {
+            $conn = $connection->returnConnection();
+            $query = $conn->prepare("UPDATE pages SET pagename = :pagename, context = :context WHERE id=$id");
+            $query->bindValue(":pagename", $pageTitle, PDO::PARAM_STR);
+            $query->bindValue(":context", $pageContent, PDO::PARAM_STR);
+            if(!$query->execute() == TRUE)
+            {
+                echo "<script type='text/javascript'>document.getElementById('error').style.display='block';</script>>";
+            } else {
+                header('Location: adminpage.php');
+            }
+            $connection->closeConnection();
+        }
+    }
 }   
 ?>
