@@ -96,3 +96,18 @@
     margin-right: 50px;
     margin-top: 50px;
 }
+
+.Editform{
+    display: flex;
+    justify-content: center;
+  }
+  .fromtop {
+      margin-top: 100px;
+  }
+@media screen and (max-width: 480px) {
+    .userdelete {
+        margin-top: 10px;
+        display: flex;
+        justify-content: center;
+    }
+  }

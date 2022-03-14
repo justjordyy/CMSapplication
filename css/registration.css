@@ -55,3 +55,11 @@
 .error {
   display: none;
 }
+
+@media screen and (max-width: 480px) {
+
+  .reg{
+    width: 90%;
+  }
+
+}
