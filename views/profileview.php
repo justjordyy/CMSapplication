@@ -34,7 +34,7 @@
             echo "<input type='text' class='reg' id='oldusername' placeholder='old username' value=".$username." disabled='disabled'required name='oldusername'>";
         ?>
         <input type="text" class="reg" id="username" placeholder="new username" required name="username">
-        <button type="submit" name="updateusernameForm" class="btn btn-info btn-block btn-round" >Update!</button>
+        <button type="submit" name="updateusernameForm" class="btn btn-info btn-block btn-round btnupdate" >Update!</button>
     </form>
 </div>
 </br>
@@ -45,7 +45,7 @@
             echo "<input type='text' class='reg' id='oldmail' placeholder='old mail' value=".$usermail." disabled='disabled' required name='oldmail'>";
         ?>
         <input type="text" class="reg" id="mail" placeholder="new mail" required name="mail">
-        <button type="submit" name="updatemailForm" class="btn btn-info btn-block btn-round" >Update!</button>
+        <button type="submit" name="updatemailForm" class="btn btn-info btn-block btn-round btnupdate" >Update!</button>
     </form>
 </div>
 </br>
@@ -56,7 +56,7 @@
         </br>
         <input type="password" class="reg" id="newpassword" placeholder="password" required name="newpassword">
         <input type="password" class="reg" id="newpasswordrenterd" placeholder="reenter your password" required name="newpasswordrenterd">
-        <button type="submit" name="updatepasswordForm" class="btn btn-info btn-block btn-round" >Update!</button>
+        <button type="submit" name="updatepasswordForm" class="btn btn-info btn-block btn-round btnupdate" >Update!</button>
     </form>
 </div>
 </br>

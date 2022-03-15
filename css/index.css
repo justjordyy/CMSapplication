@@ -97,17 +97,47 @@
     margin-top: 50px;
 }
 
-.Editform{
+.Editform {
     display: flex;
     justify-content: center;
   }
   .fromtop {
       margin-top: 100px;
   }
+
+  @media screen and (min-width: 800px) {
+    .pageslist tr:nth-child(even) {
+        background-color: whitesmoke;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .pageslist{
+        overflow-x: auto;
+        margin-left: 20px;
+        margin-right: 20px;
+        margin-top: 10px;
+    }
+}
 @media screen and (max-width: 480px) {
     .userdelete {
-        margin-top: 10px;
+        margin-top: 20px;
         display: flex;
         justify-content: center;
+    }
+    .Editform {
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+    .reg {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .btnupdate {
+        margin-top: 10px;
+    }
+    .fromtop {
+        margin-top: 20px;
     }
   }
