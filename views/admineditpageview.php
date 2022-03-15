@@ -9,9 +9,9 @@
           <?= $pagecontext ?>
       </textarea>
       <br><br>
-      <input type="checkbox" id="pprite">
+      <input type="checkbox" id="pprite" name="pprite" value="1" <?= $checkactive ?>>
       <label for="pprite">Keep page private</label><br><br>
-      <input type="checkbox" id="pstaff">
+      <input type="checkbox" id="pstaff" name="pstaff" value="1" <?= $checkadmin ?>>
       <label for="pstaff">Admin only</label><br><br>
       <button type="submit" name="editPageForm" class="btn btn-success">Update page</button>
       <a class="btn btn-danger" href="./adminpage.php" role="button">Cancel</a>

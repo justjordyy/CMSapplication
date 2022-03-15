@@ -5,16 +5,18 @@ class Pages {
 
     public function __construct() {}
 
-    public function createPage($pageTitle, $pageContent)
+    public function createPage($pageTitle, $pageContent, $active, $adminpage)
     {
         $connection = new Database();
         $connection->openConnection();
 
         $conn = $connection->returnConnection();
-        $query = $conn->prepare("INSERT INTO pages (pagename, context) VALUES (:pagename, :context)");
+        $query = $conn->prepare("INSERT INTO pages (pagename, context, active, adminpage) VALUES (:pagename, :context, :active, :adminpage)");
 
         $query->bindValue(":pagename", $pageTitle, PDO::PARAM_STR);
         $query->bindValue(":context", $pageContent, PDO::PARAM_STR);
+        $query->bindValue(":active", $active, PDO::PARAM_STR);
+        $query->bindValue(":adminpage", $adminpage, PDO::PARAM_STR);
         if(!$query->execute() == TRUE)
         {
             echo "<script type='text/javascript'>document.getElementById('error').style.display='block';</script>>";
@@ -31,7 +33,7 @@ class Pages {
 
         $conn = $connection->returnConnection();
         
-        $query = $conn->prepare("SELECT * FROM pages");
+        $query = $conn->prepare("SELECT * FROM pages WHERE active='0'");
         $query->execute();
 
         while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
@@ -86,14 +88,16 @@ class Pages {
         }
     }
 
-    public function editPage($id, $pageTitle, $pageContent){
+    public function editPage($id, $pageTitle, $pageContent, $active, $adminpage){
         $connection = new Database();
         $connection->openConnection();
         if ($connection->checkinfo("pages", "id", $id) === "1") {
             $conn = $connection->returnConnection();
-            $query = $conn->prepare("UPDATE pages SET pagename = :pagename, context = :context WHERE id=$id");
+            $query = $conn->prepare("UPDATE pages SET pagename = :pagename, context = :context, active = :active, adminpage = :adminpage WHERE id=$id");
             $query->bindValue(":pagename", $pageTitle, PDO::PARAM_STR);
             $query->bindValue(":context", $pageContent, PDO::PARAM_STR);
+            $query->bindValue(":active", $active, PDO::PARAM_STR);
+            $query->bindValue(":adminpage", $adminpage, PDO::PARAM_STR);
             if(!$query->execute() == TRUE)
             {
                 echo "<script type='text/javascript'>document.getElementById('error').style.display='block';</script>>";
