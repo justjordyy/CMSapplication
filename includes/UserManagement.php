@@ -46,10 +46,19 @@ require_once('includes/Sessions.php');
                 $connection = new Database();
                 $connection->openConnection();
                 $hashedpassword = hash("sha256", $password."SaltedPassword");
-                if ($connection->checkinfo("users", "mail", $mail) === "1" && $connection->checkinfo("users", "password", $hashedpassword) === "1") {
-                    $_SESSION['loggedin'] = $connection->returnItem("users", "mail", $mail)["id"];
-                    header("location: index.php");
-                } elseif($connection->checkinfo("users", "mail", $mail) === "0" || $connection->checkinfo("users", "password", $hashedpassword) === "0") {
+                if ($connection->checkinfo("users", "mail", $mail) === "1") {
+                    $userid = $connection->returnItem("users", "mail", $mail)["id"];
+                    if ($connection->returnItem("users", "id", $userid)["password"] === $hashedpassword) {
+                        $_SESSION['loggedin'] = $connection->returnItem("users", "mail", $mail)["id"];
+                        header("location: index.php");
+                    } else {
+                        echo "<style>
+                        .loginfail{
+                            display: block !important;
+                        }
+                        </style>";
+                    }
+                } elseif($connection->checkinfo("users", "mail", $mail) === "0") {
                     echo "<style>
                     .loginfail{
                         display: block !important;
