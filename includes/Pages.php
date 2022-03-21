@@ -21,7 +21,7 @@ class Pages {
         {
             echo "<script type='text/javascript'>document.getElementById('error').style.display='block';</script>>";
         } else {
-            header('Location: adminpage.php');
+            header('Location: adminpage.php?createdpage');
         }
         $connection->closeConnection();
     }
@@ -102,7 +102,7 @@ class Pages {
             {
                 echo "<script type='text/javascript'>document.getElementById('error').style.display='block';</script>>";
             } else {
-                header('Location: adminpage.php');
+                header('Location: adminpage.php?updatedpage');
             }
             $connection->closeConnection();
         }

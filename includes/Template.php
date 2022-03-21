@@ -119,11 +119,6 @@
                 </div>
             </div>
         </div> 
-        <?php
-            if (isset($view) && file_exists("./views/".$view)) {
-            require_once "./views/".$view;
-            }
-        ?>
         <div class="delacc">
         <div class="alert alert-warning loginfail alert-dismissible fade show popsize" id="loginfail" role="alert">
                 <strong>Oops!</strong> Invalid login credentials
@@ -137,7 +132,6 @@
             <strong>FATAL ERROR!</strong> Please contact the server administrator! errorcode: closeConnectionError
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
-        <!-- Make a message for succesfully created account -->
         <?php if(isset($_GET['deleted'])) { ?>
             <div class="alert alert-success alert-dismissible fade show popsize" role="alert">
                 Successfully deleted your account!
@@ -150,7 +144,18 @@
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div> 
             <?php } ?>
+            <?php if(isset($_GET['privatepage'])) { ?>
+            <div class="alert alert-warning alert-dismissible fade show popsize" role="alert">
+               Please login to visit this page.
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div> 
+            <?php } ?>
         </div>
+        <?php
+            if (isset($view) && file_exists("./views/".$view)) {
+            require_once "./views/".$view;
+            }
+        ?>
     </body>
     <script>
         function showblock(){

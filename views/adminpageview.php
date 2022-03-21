@@ -1,3 +1,21 @@
+<?php if(isset($_GET['createdpage'])) { ?>
+    <div class="alert alert-success alert-dismissible fade show popsize" role="alert">
+        page created succesfully!
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div> 
+<?php } ?>
+<?php if(isset($_GET['updatedpage'])) { ?>
+    <div class="alert alert-success alert-dismissible fade show popsize" role="alert">
+        page updated succesfully!
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div> 
+<?php } ?>
+<?php if(isset($_GET['deletedpage'])) { ?>
+    <div class="alert alert-success alert-dismissible fade show popsize" role="alert">
+        page delted succesfully!
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div> 
+<?php } ?>
 <div class="alertsize">
     <a class="btn btn-success" href="./adminaddpage.php" role="button">add page</a>
 </div>
