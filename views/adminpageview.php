@@ -26,7 +26,7 @@
             <th>Page ID</th>
             <th>Page name</th>
             <th>Visibility</th>
-            <th>Admin page</th>
+            <th>Member only page</th>
             <th>Edit</th>
             <th>Delete</th>
         </tr>

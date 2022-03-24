@@ -36,7 +36,6 @@
                         <form method="post" id="loginForm">
                             <div class="form-group">
                                 <h6>mail:</h6>
-                                <!-- maybe add the option for username too? -->
                                 <input type="email" class="form-control loginmdlfrm" id="email" placeholder="example@mail.com" name="mail" required>
                                 <h6>password:</h6>
                                 <input type="password" class="form-control loginmdlfrm" id="password" placeholder="password" name="password" required>
@@ -45,7 +44,6 @@
                         </form>
                     </div>
                     <div class="modal-footer">
-                        <!-- Check Translation -->
                         <span>New user? Create your account <a href="./registration.php">here</a></span>
                     </div>
                 </div>

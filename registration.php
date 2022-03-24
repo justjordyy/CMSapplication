@@ -44,8 +44,7 @@
                     <input type="text" class="reg" id="username" placeholder="username" required name="username">
                     <input type="email" class="reg" id="mail" placeholder="example@mail.com" required name="mail">
                     <input type="password" class="reg" id="password" placeholder="password" required name="password">
-                    <input type="password" class="reg" id="passwordrenterd" placeholder="reenter your password" required name="passwordRenterd">    
-                    <input type="text" class="reg" id="passwordreg" placeholder="admincode"  name="rol"><br><br>
+                    <input type="password" class="reg" id="passwordrenterd" placeholder="reenter your password" required name="passwordRenterd"><br><br>  
                     <input type="checkbox" required id="regconfirm">
                     <label for="regconfirm">I agree with the Terms Of Service</label><br><br>
                     <button type="submit" name="registrationForm" class="btn btn-info btn-block btn-round" >Register</button>
