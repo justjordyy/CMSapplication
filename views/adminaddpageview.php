@@ -1,4 +1,4 @@
-<script src="https://cdn.tiny.cloud/1/l97uwon26tn13gmapos74kh97tcstckx906hvicwjbgtjg29/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+<script src="https://cdn.tiny.cloud/1/no_api_key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
 <div class="infopos">
     <div class="row">
             <form id="createPageForm" method="post">
